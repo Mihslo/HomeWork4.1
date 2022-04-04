@@ -1,0 +1,32 @@
+Index: src/gb/HomeWorkApp4/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package gb.HomeWorkApp4;\r\n\r\nimport java.util.Random;\r\nimport java.util.Scanner;\r\n\r\npublic class Main {\r\n    public static int size = 5;\r\n    public static int winLine = 4;\r\n    public static char[][] map;\r\n    public static  final  char dot_X = 'x';\r\n    public static final char dot_O = 'O';\r\n    public static final int emptu = '*';\r\n    public static Scanner cr = new Scanner(System.in);\r\n    public static Random random = new Random();\r\n\r\n    public static void main(String[] args) {\r\n        Map1();\r\n        Map();\r\n        while (true) {\r\n            human();\r\n            Map();\r\n            if (win(dot_X)) {\r\n                System.out.println(\"Победил человек\");\r\n                break;\r\n            }\r\n            if (isMapFull()) {\r\n                System.out.println(\"Ничья\");\r\n                break;\r\n            }\r\n            IA();\r\n            Map();\r\n            if (win(dot_O)) {\r\n                System.out.println(\"Победил Искуственный Интеллект\");\r\n                break;\r\n            }\r\n            if (isMapFull()) {\r\n                System.out.println(\"Ничья\");\r\n                break;\r\n            }\r\n        }\r\n        System.out.println(\"Игра закончена\");\r\n    }\r\n\r\n\r\n    public static void Map() {\r\n        System.out.print(\"+\" + \"|\");\r\n        for (int i = 0; i < size; i++) {\r\n            System.out.print(i + 1 + \"|\");\r\n\r\n        }\r\n        System.out.println();\r\n        for (int i = 0; i < size; i++) {\r\n            System.out.print((i + 1) + \"|\");\r\n            for (int j = 0; j < size; j++) {\r\n                System.out.print(map[i][j] + \"|\");\r\n\r\n            }\r\n            System.out.println();\r\n        }\r\n    }\r\n\r\n    public static void Map1() {\r\n        map = new char[size][size];\r\n        for (int i = 0; i < size; i++) {\r\n            for (int j = 0; j < size; j++) {\r\n                map[i][j] = emptu;\r\n\r\n            }\r\n\r\n        }\r\n\r\n    }\r\n\r\n    public static boolean IA() {\r\n        int x, y;\r\n        do {\r\n            x = random.nextInt(size);\r\n            y = random.nextInt(size);\r\n        } while (!isCellValid(x, y));\r\n        System.out.println(\"Компьютер походил в точку \" + (x + 1) + \" \" + (y +\r\n                1));\r\n        map[y][x] = dot_O;\r\n        return false;\r\n    }\r\n\r\n    public static boolean human() {\r\n        int x, y;\r\n        do {\r\n            System.out.println(\"Введите координаты в формате X Y\");\r\n            x = cr.nextInt() - 1;\r\n            y = cr.nextInt() - 1;\r\n        } while (!isCellValid(x, y));\r\n        map[y][x] =  dot_X;\r\n        return false;\r\n    }\r\n\r\n    public static boolean isCellValid(int x, int y) {\r\n        if (x < 0 || x >= size || y < 0 || y >= size) return false;\r\n        if (map[y][x] == emptu) return true;\r\n        return false;\r\n    }\r\n\r\n    public static boolean win(char sum) {\r\n     boolean x,y;\r\n     for (int i=0;i<size;i++){\r\n         x=true;\r\n         y=true;\r\n         for (int j=0; j<size;j++){\r\n             x &=(map[i][j]==sum);\r\n             y &=(map[j][i]==sum);\r\n         }\r\n         if(x || y) return true;\r\n     }\r\n     \r\n     return false;\r\n    }\r\n\r\n    public static boolean isMapFull() {\r\n        for (int i = 0; i < size; i++) {\r\n            for (int j = 0; j < size; j++) {\r\n                if (map[i][j] == emptu) return false;\r\n            }\r\n        }\r\n        return true;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/gb/HomeWorkApp4/Main.java b/src/gb/HomeWorkApp4/Main.java
+--- a/src/gb/HomeWorkApp4/Main.java	(revision 420e2ee922f6d7b6b531db27af483a965b7b8630)
++++ b/src/gb/HomeWorkApp4/Main.java	(date 1649097755547)
+@@ -111,7 +111,7 @@
+          }
+          if(x || y) return true;
+      }
+-     
++
+      return false;
+     }
+ 
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+--- /dev/null	(date 1649097281759)
++++ b/.gitignore	(date 1649097281759)
+@@ -0,0 +1,2 @@
++# Project exclude paths
++/out/
+\ No newline at end of file
