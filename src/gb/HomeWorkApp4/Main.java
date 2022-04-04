@@ -13,6 +13,7 @@ public class Main {
     public static Scanner cr = new Scanner(System.in);
     public static Random random = new Random();
 
+
     public static void main(String[] args) {
         Map1();
         Map();
